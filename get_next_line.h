@@ -6,7 +6,7 @@
 /*   By: fgwyneth <fgwyneth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 23:34:01 by fgwyneth          #+#    #+#             */
-/*   Updated: 2020/10/01 00:53:55 by fgwyneth         ###   ########.fr       */
+/*   Updated: 2020/10/02 12:52:46 by fgwyneth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdlib.h>
 
 # define FD_NUMS 512
+# define BUF_SIZE 1024
 
 int         get_next_line(int fd, char **line);
 char        *ft_strjoin(char const *s1, char const *s2);
@@ -24,8 +25,9 @@ void        ft_str_clear(char *str);
 int         find_end(char *str);
 int		    ft_strlen(const char *str);
 static int  process_line(char *line_fd, char **line);
-static int  read_file(int fd, char **lines_fd);
+int         read_file(int fd, char **lines_fd);
 char        *sub_str(char *str);
+char        *remove_str(char *str);
 
 
 

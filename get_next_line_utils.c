@@ -6,7 +6,7 @@
 /*   By: fgwyneth <fgwyneth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 23:33:59 by fgwyneth          #+#    #+#             */
-/*   Updated: 2020/10/01 00:51:52 by fgwyneth         ###   ########.fr       */
+/*   Updated: 2020/10/02 11:38:27 by fgwyneth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,21 @@ int		ft_strlen(const char *str)
 	while (str[len] != '\0')
 		len++;
 	return (len);
+}
+
+char        *remove_str(char *str)
+{
+    int     i;
+    char    *new_str;
+    
+    i = 0;
+    while (str[i] != '\n' && str[i] != '\0')
+    {
+        i++;
+    }
+    i++;
+    new_str = ft_strdup(&str[i]);
+    i = 0;
+    str = new_str;
+    return (str);
 }
