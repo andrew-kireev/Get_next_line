@@ -6,7 +6,7 @@
 /*   By: fgwyneth <fgwyneth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 23:34:01 by fgwyneth          #+#    #+#             */
-/*   Updated: 2020/10/02 12:52:46 by fgwyneth         ###   ########.fr       */
+/*   Updated: 2020/10/02 14:25:59 by fgwyneth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdlib.h>
 
 # define FD_NUMS 512
-# define BUF_SIZE 1024
+# define BUF_SIZE 1
 
 int         get_next_line(int fd, char **line);
 char        *ft_strjoin(char const *s1, char const *s2);
