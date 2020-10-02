@@ -6,16 +6,17 @@
 
 int main(void)
 {
+    // int fd = open("/Users/andrewkireev/Documents/GitHub/GNL/GNL_lover/test_files_GNL/test_file13", O_RDONLY);
     int fd = open("/Users/andrewkireev/Documents/GitHub/GNL/Get_next_line/text", O_RDONLY);
-    // int fd2 = open("/Users/andrewkireev/Documents/GitHub/GNL/Get_next_line/test2", O_RDONLY);
-    printf("fd = %d\n", fd);
-    char    *str = (char *) malloc(sizeof(char *));
+    char    *str = (char *)malloc(sizeof(char *));
     int bytes_read;
+    int count = 0;
     while (1)
     {
          bytes_read = get_next_line(fd, &str);
          if (bytes_read <= 0)
-            return 0;
+            break;
         printf("%s\n", str);
+        count++;
     }
 }

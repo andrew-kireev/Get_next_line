@@ -6,7 +6,7 @@
 /*   By: fgwyneth <fgwyneth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 23:33:59 by fgwyneth          #+#    #+#             */
-/*   Updated: 2020/10/02 14:25:32 by fgwyneth         ###   ########.fr       */
+/*   Updated: 2020/10/02 23:21:14 by fgwyneth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int     find_end(char *str)
     while (str[i] != '\0')
     {
         if (str[i] == '\n')
-            return (i);
+            return (1);
             i++;
     }
     return (-1);
@@ -86,6 +86,8 @@ char    *sub_str(char *str)
         return (NULL);
     i = 0;
 	int tmp = find_end(str);
+	if (tmp == -1)
+		return (NULL);
 	while (i != tmp + 1)
 	{
 		sub_str[i] = '\0';
@@ -97,6 +99,7 @@ char    *sub_str(char *str)
         sub_str[i] = str[i];
         i++;
     }
+//	sub_str[i] = '\n';
     return (sub_str);
 }
 
@@ -116,7 +119,7 @@ char        *remove_str(char *str)
     char    *new_str;
     
     i = 0;
-    while (str[i] != '\n' && str[i] != '\0') 
+    while (str[i] != '\n' && str[i] != '\0')
     {
         i++;
     }
