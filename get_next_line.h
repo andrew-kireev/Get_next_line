@@ -6,7 +6,7 @@
 /*   By: fgwyneth <fgwyneth@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/30 23:34:01 by fgwyneth          #+#    #+#             */
-/*   Updated: 2020/10/02 14:25:59 by fgwyneth         ###   ########.fr       */
+/*   Updated: 2020/10/02 14:42:58 by fgwyneth         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ char	    *ft_strdup(const char *str);
 void        ft_str_clear(char *str);
 int         find_end(char *str);
 int		    ft_strlen(const char *str);
-static int  process_line(char *line_fd, char **line);
 int         read_file(int fd, char **lines_fd);
 char        *sub_str(char *str);
 char        *remove_str(char *str);
+// static int  process_line(char *line_fd, char *line[FD_NUMS]);
 
 
 
