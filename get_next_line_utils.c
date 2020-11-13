@@ -24,7 +24,7 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
 	if (!(new_str = (char *)malloc(sizeof(char) * (ft_strlen(s1) +
-												   ft_strlen(s2) + 2))))
+			ft_strlen(s2) + 1))))
 		return (NULL);
 	while (s1[j])
 		new_str[i++] = s1[j++];
@@ -35,23 +35,27 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	return (new_str);
 }
 
-int		ft_strlen(const char *str)
+int			ft_strlen(const char *str)
 {
 	int		len;
 
+	if (str == NULL)
+		return (0);
 	len = 0;
 	while (str[len] != '\0')
 		len++;
 	return (len);
 }
 
-char	*ft_strdup(const char *str)
+char		*ft_strdup(const char *str)
 {
 	char	*ptr;
 	int		i;
 
+	if (str == NULL)
+		return (NULL);
 	i = 0;
-	if (!(ptr = (char *)malloc(sizeof(char) * (ft_strlen(str) + 2))))
+	if (!(ptr = (char *)malloc(sizeof(char) * (ft_strlen(str) + 1))))
 		return (NULL);
 	while (str[i])
 	{
@@ -62,7 +66,7 @@ char	*ft_strdup(const char *str)
 	return (ptr);
 }
 
-char	*ft_strrchr(char *str, char ch)
+char		*ft_strrchr(char *str, char ch)
 {
 	int		i;
 
@@ -78,16 +82,20 @@ char	*ft_strrchr(char *str, char ch)
 char		*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char		*new_str;
+	size_t		max_len;
 	size_t		i;
 
 	i = 0;
 	if (s == NULL)
 		return (NULL);
-	if (!(new_str = (char *)malloc(sizeof(char) * (len + 10))))
+	max_len = ft_strlen(s);
+	if (start >= (unsigned int)max_len)
+		max_len = 0;
+	else
+		max_len = (len >= max_len - start + 1 ? max_len - start + 1 : len);
+	if (!(new_str = (char *)malloc(sizeof(char) * (max_len + 1))))
 		return (NULL);
-	if (start >= (unsigned int)ft_strlen(s))
-		return (new_str);
-	while (s[start] && i < len)
+	while (s[start] && i < max_len)
 	{
 		new_str[i] = s[start];
 		start++;

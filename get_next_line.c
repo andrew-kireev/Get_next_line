@@ -12,7 +12,6 @@
 
 #include "get_next_line.h"
 #include <stdio.h>
-#include <fcntl.h>
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -36,7 +35,6 @@ int  read_file(int fd, char **lines_fd)
     int			result;
 
     result = 0;
-    bytes_read = 0;
 	if (lines_fd[fd] == NULL)
 		lines_fd[fd] = ft_strdup("");
 	clear_buffer(buf, BUFFER_SIZE + 1);
@@ -52,21 +50,19 @@ int  read_file(int fd, char **lines_fd)
     	}
     	clear_buffer(buf, BUFFER_SIZE + 1);
     }
+    if (bytes_read == -1)
+    	result = -1;
     return (result);
 }
 
 int check_line(char *line) {
 	char	*ptr;
-	int		size;
 
-	size = ft_strlen(line);
 	if (line == NULL)
 		return (-1);
 
-
 	if ((ptr = ft_strrchr(line, '\n')) != NULL) {
 		*ptr = '\0';
-//		if (size != 1)
 			return 1;
 	}
 	return 0;
@@ -85,7 +81,7 @@ char	*clear_lines(char **lines_fd, int start, int fd) {
 int find_end_(const char *str)
 {
 	int		i;
-	if (str == NULL && ft_strlen(str) == 0)
+	if (str == NULL || ft_strlen(str) == 0)
 		return 0;
 
 	i = 0;
@@ -97,15 +93,12 @@ int find_end_(const char *str)
 
 int         get_next_line(int fd, char **line)
 {
-	static char *lines_fd[100];
+	static char *lines_fd[FD_NUMS];
     int         reading_result;
     int			return_value;
-    if (BUFFER_SIZE <= 0)
-    	return (-1);
 
     return_value = 0;
-    reading_result = 0;
-    if (fd < 0 || !line)
+    if ((fd < 0 || !line || BUFFER_SIZE == 0) != 0)
         return (-1);
     reading_result = read_file(fd, lines_fd);
 
@@ -113,8 +106,10 @@ int         get_next_line(int fd, char **line)
     	*line = ft_substr(lines_fd[fd], 0, find_end_(lines_fd[fd]) + 1);
     	return_value = check_line(*line);
 //		printf("%s\n", lines_fd[fd]);
-    	lines_fd[fd] = clear_lines(lines_fd, ft_strlen(*line), fd);
+    	clear_lines(lines_fd, ft_strlen(*line), fd);
 //    	printf("%s\n", *line);
     }
+    if (reading_result == -1)
+    	return_value = -1;
     return return_value;
 }
