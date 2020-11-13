@@ -4,19 +4,37 @@
 #include "get_next_line.h"
 
 
+void clear(char *str)
+{
+	int i = 0;
+
+	while (str[i])
+	{
+		str[i] = '\0';
+		i++;
+	}
+}
+
+
 int main(void)
 {
-    // int fd = open("/Users/andrewkireev/Documents/GitHub/GNL/GNL_lover/test_files_GNL/test_file13", O_RDONLY);
     int fd = open("/Users/andrewkireev/Documents/GitHub/GNL/Get_next_line/text", O_RDONLY);
-    char    *str = (char *)malloc(sizeof(char *));
     int bytes_read;
     int count = 0;
     while (1)
     {
+		char    *str;
          bytes_read = get_next_line(fd, &str);
-         if (bytes_read <= 0)
-            break;
-        printf("%s\n", str);
+		printf("bytes = %d", bytes_read);
+         if (bytes_read != -1)
+			 printf("%s\n", str);
+         if (bytes_read <= 0) {
+         	if (bytes_read != -1)
+			 	free(str);
+         	break;
+		 }
         count++;
+         clear(str);
+		free(str);
     }
 }

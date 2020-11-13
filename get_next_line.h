@@ -15,8 +15,8 @@
 
 #include <stdlib.h>
 
-# define FD_NUMS 512
-# define BUFFER_SIZE 7
+//# define FD_NUMS 512
+# define BUFFER_SIZE 12
 
 int         get_next_line(int fd, char **line);
 char        *ft_strjoin(char const *s1, char const *s2);
@@ -24,9 +24,10 @@ char	    *ft_strdup(const char *str);
 void        ft_str_clear(char *str);
 int         find_end(char *str);
 int		    ft_strlen(const char *str);
-int         read_file(int fd, char **lines_fd);
-char        *sub_str(char *str);
+int  		read_file(int fd, char **lines_fd);
+char		*ft_substr(char const *s, unsigned int start, size_t len);
 char        *remove_str(char *str);
+char		*ft_strrchr(char *str, char ch);
 // static int  process_line(char *line_fd, char *line[FD_NUMS]);
 
 
